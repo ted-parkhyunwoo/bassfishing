@@ -16,6 +16,7 @@ java를 이용한 단순 계산기.
 
 
 // OK-251012. ReelLineCapa 의 basePower는 사실상 쓸모 없음. 
+// TODO. 싱커 호-gram 변환기 클래스 추가
 // TODO. ReelLineCapa 의 릴이름 String name 멤버변수 추가
 // TODO. ReelLineCapa 의 배스용 주 사용라인(단사기준 4lb~20lb) 까지 2lb단위로 모두 출력기능 첨부
 // TODO. ReelLineCapa 에 여분스풀 여부는 항상 false로 다루고, 만약 있다면 복사생성하여 새로 스펙을 입력받고 위 출력기능을 같이 출력.
