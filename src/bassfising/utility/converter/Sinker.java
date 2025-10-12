@@ -10,7 +10,7 @@ public class Sinker {
         return res;
     }
     
-    public static void convertPrint(double weight, String unit) {
+    public static void printConvert(double weight, String unit) {
         final String resUnit = unit == "g"? "ho" : "g";
         double res = convert(weight, unit);
         // 보기싫은 소수점 두자리까지만 반올림처리

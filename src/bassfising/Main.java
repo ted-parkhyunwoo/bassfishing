@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         // 싱커 호수<->gram 상호 변환기
         System.out.println(Sinker.convert(3, ho));     // 11.25
-        Sinker.convertPrint(14, g);                    // 14.0g: 3.73ho
+        Sinker.printConvert(14, g);                    // 14.0g: 3.73ho
 
         // 라인 호수<->lb 상호 변환기
         System.out.println(Line.convert(4, ho));       // 16.0
