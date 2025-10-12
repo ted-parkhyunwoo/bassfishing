@@ -9,27 +9,31 @@ public class Main {
     static String g = "g";
 
     public static void main(String[] args) {
+        // !주의: Sinker,Line convert의 두번 째 매개변수는 현재 값을 넣습니다. (3호: 3, ho) -> 자동으로 gram, lb로 전환
         // 싱커 호수<->gram 상호 변환기
         System.out.println(Sinker.convert(3, ho));     // 11.25 (double)
         Sinker.printConvert(14, g);                    // 14.0g: 3.73호
         Sinker.printConvert(5, ho);                    // 5.0ho: 18.75g
 
+
         // 라인 호수<->lb 상호 변환기
         System.out.println(Line.convert(4, ho));       // 16.0  (double)
         Line.printConvert(12, lb);                     // 12.0lb: 3.0호
 
+
         // 릴 기본제원 권사량을 베이스로 다른파워의 라인 권사량 추정.
-        // myZillion21 은 14lb 80m 감기는 릴.
+        // 초기화: myZillion21 은 14lb 90m 감기는 릴.
         ReelLineCapa myZillion21 = new ReelLineCapa(14, lb, 90);
+        
         // myZillion21의 12lb는 몇미터 감기는지 확인
         double res = myZillion21.getOtherLineCapa(12, lb);
         System.out.println(res);                        // 93.33333...
+        
         // 쉬운출력
         myZillion21.printOtherLine(16, lb);             // 16.0lb 70.0m
 
-        // 이름변경: 기본생성-"empty"
+        // 쉬운출력2 - 자주 쓰이는 라인 전체출력 (4lb ~ 20lb)
         myZillion21.setName("21질리언");
-        // 자주쓰는 라인 4lb~20lb 모두 출력
         myZillion21.printOtherLine();
         /* print.
             21질리언:
