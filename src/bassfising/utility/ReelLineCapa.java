@@ -82,15 +82,14 @@ public class ReelLineCapa {
     // simple print other power line.
     public void printOtherLine(double targetPower, String lineUnit) {
         double res = getOtherLineCapa(targetPower, lineUnit);
-        String basePowerStr = String.format("%.2f", getBasePowerLb());
-        String resStr = String.format("%.2f", res);
-        System.out.print(targetPower + "lb " + resStr + LENGTH_UNIT);
+        String basePowerStr = String.format("%.0flb", getBasePowerLb());
+        String targetPowerStr = String.format("%.0flb", targetPower);
+        String resStr = String.format("%.1f", res);
+        System.out.print(targetPowerStr + " " + resStr + LENGTH_UNIT);
         if (getBasePowerLb() >= targetPower + 6 || getBasePowerLb() <= targetPower - 6) {
-            System.out.print("  오차주의: 기본(" + basePowerStr + "lb)보다 6lb 이상 차이.");
+            System.out.print("  오차주의: 기본 " + basePowerStr + "과 6lb 이상 차이남");
         }
-        if (getBasePowerLb() == targetPower) {
-            System.out.print(" (기본값)");
-        }
+        if (getBasePowerLb() == targetPower) { System.out.print(" (기본값)"); }
         System.out.println();
     }
 

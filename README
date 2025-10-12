@@ -12,7 +12,8 @@ java를 이용한 단순 계산기.
     bassfising.utility.ReelLineCapa.java 
     생성자 사용시 매개변수로 파워, 유닛("lb" or "ho"), 길이(단위없음. 미터로 통일) 을 받으며
     getOtherLineCapa(파워, 단위) 호출시 몇미터 감기는지 리턴됩니다.
-
+    printOtherLine(파워, 단위)  로 쉽게 프린트 할수 있습니다.
+    printOtherLine() 로 4lb~20lb까지 모두 쉽게 프린트 할 수 있습니다.
 
 
 // TODO. ReelLineCapa 에 여분스풀 여부는 항상 false로 다루고, 만약 있다면 복사생성하여 새로 스펙을 입력받고 위 출력기능을 같이 출력.
