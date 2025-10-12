@@ -1,0 +1,24 @@
+java를 이용한 단순 계산기.
+
+
+라인변환기: 단사라인만 따름 - 거의 선형적 규칙을 따르는 호수/파운드 변환이므로 배스라인은 거의 정확. 합사는 조구사별로 lb 혹은 호수, 직경(mm)등이 상이하여 호수만 고려중.
+    bassfising.utility.LineConverter.java 클래스(싱글톤이므로 인스턴스 생성없이 변환)
+    매개변수로 float 파워, String 입력단위, String 리턴단위.    단위는 "lb" 혹은 "ho" 를 말함.
+    e.g) 4호 라인을 lb로 변환.
+    LineConverter.convert(4, ho, lb)       ->      16.0 
+
+
+스펙 외 권사량추정기:
+    bassfising.utility.ReelLineCapa.java 
+    생성자 사용시 매개변수로 파워, 유닛("lb" or "ho"), 길이(단위없음. 미터로 통일) 을 받으며
+    getOtherLineCapa(파워, 단위) 호출시 몇미터 감기는지 리턴됩니다.
+
+
+
+// TODO. ReelLineCapa 의 릴이름 String name 멤버변수 추가
+// TODO. ReelLineCapa 의 배스용 주 사용라인(단사기준 4lb~20lb) 까지 2lb단위로 모두 출력기능 첨부
+// TODO. LineConverter 의 예외처리 구체화.
+// TODO. LineUnitChecker 예외처리 클래스 구체화 및 분리(현재는 라인단위 검증) 참고- 라인단위는 lb인지 ho인지를 말합니다.
+// TODO. 단사라인 종류만 가능한 상태, 합사(PE) 추가. (합사로 인한 수식보정, 라인종류 멤버변수 추가 등 고려)
+// TODO. 주석 정리
+// TODO. README 개선.
