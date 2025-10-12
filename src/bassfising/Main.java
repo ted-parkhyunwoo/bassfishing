@@ -4,6 +4,7 @@ import bassfising.utility.converter.Line;
 import bassfising.utility.converter.Sinker;
 
 public class Main {
+    // UNIT. 직접 String으로 사용해도 됨.
     static String lb = "lb";
     static String ho = "ho";
     static String g = "g";
@@ -11,13 +12,13 @@ public class Main {
     public static void main(String[] args) {
         // !주의: Sinker,Line convert의 두번 째 매개변수는 현재 값을 넣습니다. (3호: 3, ho) -> 자동으로 gram, lb로 전환
         // 싱커 호수<->gram 상호 변환기
-        System.out.println(Sinker.convert(3, ho));     // 11.25 (data type:double)
+        System.out.println(Sinker.convert(3, ho));     // 11.25 (return type:double)
         Sinker.printConvert(14, g);                    // 14.0g: 3.73호
         Sinker.printConvert(5, ho);                    // 5.0ho: 18.75g
 
 
         // 라인 호수<->lb 상호 변환기
-        System.out.println(Line.convert(4, ho));       // 16.0  (data type:double)
+        System.out.println(Line.convert(4, ho));       // 16.0  (return type:double)
         Line.printConvert(12, lb);                     // 12.0lb: 3.0호
 
 
@@ -25,7 +26,7 @@ public class Main {
         // 초기화: myZillion21 은 14lb 90m 감기는 릴.
         ReelLineCapa myZillion21 = new ReelLineCapa(14, lb, 90);
         
-        // myZillion21의 12lb는 몇미터 감기는지 확인
+        // myZillion21의 12lb는 몇미터 감기는지 return.
         double res = myZillion21.getOtherLineCapa(12, lb);
         System.out.println(res);                        // 105.0
         
