@@ -39,8 +39,8 @@ public class ReelLineCapa {
         }
         this.baseLength = baseLength;
         boolean isLbUnit = lineUnit == "lb"? true: false;
-        this.basePowerLb = (isLbUnit)? basePower : LineConverter.convert(basePower, "ho", "lb");
-        this.basePowerHo = (isLbUnit)? LineConverter.convert(basePower, "ho", "lb") : basePower;        
+        this.basePowerLb = (isLbUnit)? basePower : LineConverter.convert(basePower, "ho");
+        this.basePowerHo = (isLbUnit)? LineConverter.convert(basePower, "ho") : basePower;        
     }
 
     // Constructor. setBaseInfo를 호출
