@@ -24,7 +24,8 @@ bassfising.utility.converter.Sinker
 
 bassfising.utility.ReelLineCapa
     - 스펙 외 권사량추정
-    - 생성자 매개변수로 반드시 기초정보 기입해야함 (파워, 파워단위, 길이). 길이는 m 로 통일됨
+    - 생성자 매개변수로 반드시 기초정보 기입해야함: new ReelLineCapa(파워, 단위, 길이)길이는 m 로 통일됨
+        e.g) ReelLineCapa myReel = new ReelLineCapa(14, lb, 75)
     - (instance).getOtherLineCapa(새로 감을 라인 파워, 파워단위)       ->   (return double) 감을 수 있는 길이 
     - (instance).printOtherLine(새로 감을 라인 파워, 파워단위)         ->   (void print) 파워lb 길이m
     - (instance).printOtherLine() 로 4lb~20lb까지 모두 쉽게 프린트
