@@ -10,11 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
         // 싱커 호수<->gram 상호 변환기
-        System.out.println(Sinker.convert(3, ho));     // 11.25
-        Sinker.printConvert(14, g);                    // 14.0g: 3.73ho
+        System.out.println(Sinker.convert(3, ho));     // 11.25 (double)
+        Sinker.printConvert(14, g);                    // 14.0g: 3.73호
+        Sinker.printConvert(5, ho);                    // 5.0ho: 18.75g
 
         // 라인 호수<->lb 상호 변환기
-        System.out.println(Line.convert(4, ho));       // 16.0
+        System.out.println(Line.convert(4, ho));       // 16.0  (double)
         Line.printConvert(12, lb);                     // 12.0lb: 3.0호
 
         // 릴 기본제원 권사량을 베이스로 다른파워의 라인 권사량 추정.

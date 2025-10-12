@@ -15,6 +15,6 @@ public class Sinker {
         double res = convert(weight, unit);
         // 보기싫은 소수점 두자리까지만 반올림처리
         final String resStr = String.format("%.2f", res);
-        System.out.println(weight + unit + ": " + resStr + resUnit);
+        System.out.println(weight + unit + ": " + resStr + (resUnit == "g"? "g":"호"));
     }
 }
