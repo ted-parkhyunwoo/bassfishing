@@ -1,7 +1,7 @@
 package bassfising;
-import bassfising.utility.LineConverter;
 import bassfising.utility.ReelLineCapa;
-import bassfising.utility.SinkerConverter;
+import bassfising.utility.converter.Line;
+import bassfising.utility.converter.Sinker;
 
 public class Main {
     static String lb = "lb";
@@ -10,12 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
         // 싱커 호수<->gram 상호 변환기
-        System.out.println(SinkerConverter.convert(3, ho));     // 11.25
-        SinkerConverter.convertPrint(14, g);                    // 14.0g: 3.73ho
+        System.out.println(Sinker.convert(3, ho));     // 11.25
+        Sinker.convertPrint(14, g);                    // 14.0g: 3.73ho
 
         // 라인 호수<->lb 상호 변환기
-        System.out.println(LineConverter.convert(4, ho));       // 16.0
-        LineConverter.printConvert(12, lb);                     // 12.0lb: 3.0호
+        System.out.println(Line.convert(4, ho));       // 16.0
+        Line.printConvert(12, lb);                     // 12.0lb: 3.0호
 
         // 릴 기본제원 권사량을 베이스로 다른파워의 라인 권사량 추정.
         // myZillion21 은 14lb 80m 감기는 릴.

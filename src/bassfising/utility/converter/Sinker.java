@@ -1,6 +1,6 @@
-package bassfising.utility;
+package bassfising.utility.converter;
 
-public class SinkerConverter {    
+public class Sinker {    
     public static double convert(double weight, String unit) {
         double res;
         // 예외처리 삽입할 것.

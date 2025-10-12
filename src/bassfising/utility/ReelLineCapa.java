@@ -1,4 +1,5 @@
 package bassfising.utility;
+import bassfising.utility.converter.Line;
 
 // 합사는 lb 사용이 거의 불가능할정도로 조구사마다 스펙 상이하므로 호수만 고려합니다.
 
@@ -39,8 +40,8 @@ public class ReelLineCapa {
         }
         this.baseLength = baseLength;
         boolean isLbUnit = lineUnit == "lb"? true: false;
-        this.basePowerLb = (isLbUnit)? basePower : LineConverter.convert(basePower, "ho");
-        this.basePowerHo = (isLbUnit)? LineConverter.convert(basePower, "ho") : basePower;        
+        this.basePowerLb = (isLbUnit)? basePower : Line.convert(basePower, "ho");
+        this.basePowerHo = (isLbUnit)? Line.convert(basePower, "ho") : basePower;        
     }
 
     // Constructor. setBaseInfo를 호출

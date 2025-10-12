@@ -1,6 +1,6 @@
-package bassfising.utility;
+package bassfising.utility.converter;
 
-public class LineConverter {
+public class Line {
     public static double convert(double power, String input_type) {
         String ho = "ho";
         String lb = "lb";
