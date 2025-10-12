@@ -22,8 +22,8 @@ e.g:
     사용: myReel1.getOtherLineCapa(12, "lb")  -> 93.33333           - 12lb 라인 변경시 93.33333m 감을수 있다는 뜻
 */
 public class ReelLineCapa {
-    private float basePower;
     private float baseLength;
+    // 한쪽만 입력해도 생성자에서 자동으로 채워넣음.
     private float basePowerLb;
     private float basePowerHo;
     
@@ -38,11 +38,10 @@ public class ReelLineCapa {
             System.out.println("[ERR]Line Type Error.");
             return;
         }
-        this.basePower = basePower;
         this.baseLength = baseLength;
         boolean isLbUnit = lineUnit == "lb"? true: false;
-        this.basePowerLb = (isLbUnit)? this.basePower : LineConverter.convert(this.basePower, "ho", "lb");
-        this.basePowerHo = (isLbUnit)? LineConverter.convert(this.basePower, "ho", "lb") : this.basePower;        
+        this.basePowerLb = (isLbUnit)? basePower : LineConverter.convert(basePower, "ho", "lb");
+        this.basePowerHo = (isLbUnit)? LineConverter.convert(basePower, "ho", "lb") : basePower;        
     }
 
     // Constructor. setBaseInfo를 호출
@@ -52,7 +51,7 @@ public class ReelLineCapa {
 
     // targetPower:float 는 변경할 라인의 파워. lineUnit은 단위이며, "ho" 혹은 "lb".
     public float getOtherLineCapa(float tergetPower, String lineUnit) {
-        if (this.basePower == 0f || this.baseLength == 0f) {
+        if (this.basePowerLb == 0 || this.baseLength == 0) {
             System.out.println("[ERR]initialize was wrong.");
             return -1;
         }
