@@ -1,8 +1,7 @@
 package bassfising.utility;
 
 public class LineConverter {
-
-    public static float convert(float power, String input_type, String return_type) {
+    public static double convert(double power, String input_type, String return_type) {
         String ho = "ho";
         String lb = "lb";
         if (input_type != ho && input_type != lb) {

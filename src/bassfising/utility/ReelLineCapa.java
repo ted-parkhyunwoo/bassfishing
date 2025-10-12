@@ -1,9 +1,8 @@
 package bassfising.utility;
 
+// 합사는 lb 사용이 거의 불가능할정도로 조구사마다 스펙 상이하므로 호수만 고려합니다.
 
-//          합사는 lb 사용이 거의 불가능할정도로 조구사마다 스펙 상이하므로 호수만 고려합니다.
-
-/*  LineUnitChecker
+/*  class LineUnitChecker
 DESC: 입력된 라인의 유닛검증 Class. String이 그저 "ho" 혹은 "lb" 인지만 검증합니다.
 e.g: 
     LineUnitChecker.check(라인단위:String) -> return true(or false) 합니다.
@@ -13,7 +12,7 @@ class LineUnitChecker {
 }
 
 
-/*  ReelLineCapa
+/*  class ReelLineCapa
 DESC: 기본 권사량 정보를 입력하면 다른라인파워의 권사량을 보여줍니다. 매개변수가 있는 생성자 사용을 권장.
 dependency: LineUnitChecker(내부), LineConverter(외부)
 
@@ -22,17 +21,17 @@ e.g:
     사용: myReel1.getOtherLineCapa(12, "lb")  -> 93.33333           - 12lb 라인 변경시 93.33333m 감을수 있다는 뜻
 */
 public class ReelLineCapa {
-    private float baseLength;
+    private double baseLength;
     // 한쪽만 입력해도 생성자에서 자동으로 채워넣음.
-    private float basePowerLb;
-    private float basePowerHo;
+    private double basePowerLb;
+    private double basePowerHo;
     
-    public void setLength(float baseLength)     { this.baseLength = baseLength; }
-    protected float getLength()                 { return this.baseLength; }
+    public void setLength(double baseLength)     { this.baseLength = baseLength; }
+    protected double getLength()                 { return this.baseLength; }
 
     // desc:    init all member values method.
     // e.g:     14lb 80m 라 치면 setBaseInfo(14, "lb", 80) 으로 입력.
-    public void setBaseInfo(float basePower, String lineUnit, float baseLength) {
+    public void setBaseInfo(double basePower, String lineUnit, double baseLength) {
         // Todo. error control.
         if (!LineUnitChecker.check(lineUnit)) {
             System.out.println("[ERR]Line Type Error.");
@@ -45,12 +44,12 @@ public class ReelLineCapa {
     }
 
     // Constructor. setBaseInfo를 호출
-    public ReelLineCapa(float basePower, String lineUnit, float baseLength) {
+    public ReelLineCapa(double basePower, String lineUnit, double baseLength) {
         setBaseInfo(basePower, lineUnit, baseLength);
     }
 
-    // targetPower:float 는 변경할 라인의 파워. lineUnit은 단위이며, "ho" 혹은 "lb".
-    public float getOtherLineCapa(float tergetPower, String lineUnit) {
+    // targetPower:double 는 변경할 라인의 파워. lineUnit은 단위이며, "ho" 혹은 "lb".
+    public double getOtherLineCapa(double tergetPower, String lineUnit) {
         if (this.basePowerLb == 0 || this.baseLength == 0) {
             System.out.println("[ERR]initialize was wrong.");
             return -1;
