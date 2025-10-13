@@ -1,10 +1,10 @@
-java를 이용한 단순 계산기.
+#java를 이용한 단순 계산기.
 
 bassfising.utility.converter.Line
     - 라인 호수,lb 상호 변환기. 싱글톤이며 인스턴스 없이 사용
     - 단사 전용 합사 금지. 선형적 규칙을 따르는 호수/파운드 변환이므로 배스라인은 거의 정확
     - 매개변수 double 파워, String 단위("lb" 혹은 "ho") 를 기본으로 사용
-    - 두번 째 매개변수는 현재 단위를 넣어야 함. 알아서 전환됨
+    - 두 번째 매개변수는 현재 단위를 넣어야 함. 알아서 전환됨
 
     - e.g) 4호 라인을 lb로 변환(return double)
         LineConverter.convert(4, ho)       ->      (return double)16.0
@@ -26,22 +26,25 @@ bassfising.utility.ReelLineCapa
     - 스펙 외 권사량추정
     - 생성자 매개변수로 반드시 기초정보 기입해야함: new ReelLineCapa(파워, 단위, 길이)길이는 m 로 통일됨
         e.g) ReelLineCapa myReel = new ReelLineCapa(14, lb, 75)
-    - (instance).getOtherLineCapa(새로 감을 라인 파워, 파워단위)       ->   (return double) 감을 수 있는 길이 
-    - (instance).printOtherLine(새로 감을 라인 파워, 파워단위)         ->   (void print) 파워lb 길이m
+    - (instance).getOtherLineCapa(새로 감을 라인 파워, 파워단위)       ->   (return double) 새 권사량
+    - (instance).printOtherLine(새로 감을 라인 파워, 파워단위)         ->   (void print) 4.0ho-16lb 78.8m
     - (instance).printOtherLine() 로 4lb~20lb까지 모두 쉽게 프린트
 
 
+TODO. example.java에도 TODO리스트 있으면. 긴급사항.
+TODO. json으로 사용자의 릴 정보를 관리할 데이터 관리 클래스 필요. 릴 추가, 수정, 삭제. ReelLineCapa 등과 연동될 수 있도록 함.
+TODO. ReelLineCapa 에 여분스풀 여부는 항상 false로 다루고, 만약 있다면 복사생성하여 새로 스펙을 입력받고 위 출력기능을 같이 출력.
+TODO. LineConverter 의 예외처리 구체화.
+TODO. LineUnitChecker 예외처리 클래스 구체화 및 분리(현재는 라인단위 검증)
+TODO. 단사라인 종류만 가능한 상태, 합사(PE) 추가. (합사로 인한 수식보정, 라인종류 멤버변수 추가 등 고려)
+TODO. 주석 정리
+TODO. README 개선.
 
-// TODO. ReelLineCapa 에 여분스풀 여부는 항상 false로 다루고, 만약 있다면 복사생성하여 새로 스펙을 입력받고 위 출력기능을 같이 출력.
-// TODO. LineConverter 의 예외처리 구체화.
-// TODO. LineUnitChecker 예외처리 클래스 구체화 및 분리(현재는 라인단위 검증)
-// TODO. 단사라인 종류만 가능한 상태, 합사(PE) 추가. (합사로 인한 수식보정, 라인종류 멤버변수 추가 등 고려)
-// TODO. 주석 정리
-// TODO. README 개선.
 
-
-// 251012. ReelLineCapa 의 배스용 주 사용라인(단사기준 4lb~20lb) 까지 2lb단위로 모두 출력기능 첨부
-// 251012. ReelLineCapa 의 릴이름 String name 멤버변수 추가
-// 251012. LineConverter 는 사실상 세번 째 매개변수를 받을 필요가 없음. (호 - lb)간 상호전환만 되기 때문.
-// 251012. 싱커 호-gram 변환기 클래스 추가
-// 251012. ReelLineCapa 의 basePower는 사실상 쓸모 없음. 
+251013. Main.java -> example.java 로 변경.
+251013. ReelLineCapa 'ho'로 사용시 일으키는 문제들 디버그. 
+251012. ReelLineCapa 의 배스용 주 사용라인(단사기준 4lb~20lb) 까지 2lb단위로 모두 출력기능 첨부
+251012. ReelLineCapa 의 릴이름 String name 멤버변수 추가
+251012. LineConverter 는 사실상 세번 째 매개변수를 받을 필요가 없음. (호 - lb)간 상호전환만 되기 때문.
+251012. 싱커 호-gram 변환기 클래스 추가
+251012. ReelLineCapa 의 basePower는 사실상 쓸모 없음. 
