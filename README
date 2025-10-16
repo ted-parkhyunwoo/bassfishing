@@ -1,4 +1,5 @@
 #java를 이용한 단순 계산기.
+# README만 읽어도 충분히 사용가능하나, example.java에도 예문과 주석을 달아놓았습니다.
 
 bassfising.utility.converter.Line
     - 라인 호수,lb 상호 변환기. 싱글톤이며 인스턴스 없이 사용
