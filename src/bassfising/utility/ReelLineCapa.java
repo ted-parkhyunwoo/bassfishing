@@ -18,13 +18,12 @@ class LineUnitChecker {
     e.g: 
         초기화: ReelLineCapa myReel1 = new ReelLineCapa(14, "lb", 80);  - 기본정보 14lb 80m 권사량을 지정.
         사용: myReel1.getOtherLineCapa(12, "lb")  -> 93.33333(double)   - 12lb 라인 변경시 93.33333m 권사량
-        Print: myReel1.printOtherLine(12, "lb")   -> 3.0ho-12lb 93.3m(void print)   -  3호, 12파운드는 93.3m 권사량
 */
 public class ReelLineCapa {
     // 기본 길이 단위 상수.
-    public static final String LENGTH_UNIT = "m";
+    public static final String LENGTH_UNIT = "m";       // 예: m, 미터, yd, 야드 등.
     // 오차보정(printOtherLine 메서드가 기본프로필의 lb보다 새로감을 라인의 lb가 얼마나 차이나면 "(오차주의)"경고문을 띄울지 결정). 
-    public static final int DEFFERENCE_OVER = 6;    // 6lb 기본값.
+    public static final int DEFFERENCE_OVER = 6;        // 6lb 기본값.
 
     private String name = "Unknown";
     private double baseLength;
@@ -35,8 +34,8 @@ public class ReelLineCapa {
 
     // getter setter.
     private double getLength()                       { return this.baseLength; }
-    private double getBasePowerLb()                  { return this.basePowerLb; }
-    private double getBasePowerHo()                  { return this.basePowerHo; }
+    protected double getBasePowerLb()                  { return this.basePowerLb; }
+    protected double getBasePowerHo()                  { return this.basePowerHo; }
     public void setName(String name)                 { this.name = name; }
     public String getName()                          { return this.name; }
     
@@ -84,40 +83,6 @@ public class ReelLineCapa {
         }
             
         return -1f;
-    }
-    
-
-    // 이하 멤버메서드: 쉬운 출력문. 
-    // simple print other power line
-    public void printOtherLine(double newPower, String lineUnit) {
-        // double -> rounded Strings. 필요에 맞춰 모두 반올림처리됨.
-        String newCapaStr = String.format("%.1f",  getOtherLineCapa(newPower, lineUnit));
-        String newPowerLbStr = lineUnit == "lb"? String.format("%.0f", newPower) + "lb" : String.format("%.0f", Line.convert(newPower, "ho")) + "lb";
-        String newPowerHoStr = lineUnit == "lb"? String.format("%.1f", Line.convert(newPower, "lb")) + "ho" : String.format("%.1f", newPower) + "ho";
-
-        // string stream for result string
-        StringBuilder sb = new StringBuilder();             
-        sb.append(newPowerHoStr + "-" + newPowerLbStr  + " " + newCapaStr + LENGTH_UNIT);
-
-        // conditionally added text (lb 기준으로 작동함. ho로 입력받은 인스턴스도 상관없이 lb기준으로 작동.)
-        boolean isDefaultPower = getBasePowerLb() == newPower;
-        boolean isDefferenceOver = getBasePowerLb() >= newPower + DEFFERENCE_OVER || getBasePowerLb() <= newPower - DEFFERENCE_OVER;
-        if (isDefferenceOver)       { sb.append(" (오차주의)"); }
-        if (isDefaultPower)         { sb.append(" (Base)"); }
-
-        // print result.
-        System.out.println(sb.toString());
-    }
-
-    // printOtherLine() overloading. print 4lb ~ 20lb (step 2lb)
-    public void printOtherLine() {
-        int startPoint = 4;
-        int endPoint = 20;
-        System.out.println(getName() + ":");
-        for (int i = startPoint; i <= endPoint; i += 2) {
-            System.out.print("  ");
-            printOtherLine(i, "lb");
-        }
     }
 }
 

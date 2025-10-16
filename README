@@ -6,41 +6,70 @@ bassfising.utility.converter.Line
     - 매개변수 double 파워, String 단위("lb" 혹은 "ho") 를 기본으로 사용
     - 두 번째 매개변수는 현재 단위를 넣어야 함. 알아서 전환됨
 
-    - e.g) 4호 라인을 lb로 변환(return double)
-        LineConverter.convert(4, ho)       ->      (return double)16.0
-    - e.g) 쉬운출력. 12lb를 호수로 변환(void print)
-        Line.printConvert(12, lb)          ->      (void print)12.0lb: 3.0호
+        e.g) 4호 라인을 lb로 변환
+            LineConverter.convert(double, String)   ->      (return double)
+            LineConverter.convert(4, "ho")          ->      16.0
 
 
 bassfising.utility.converter.Sinker
     - 싱커무게 gram, 호수 상호변환기
     - Line과 사용법이 같음. 다만 "lb" 대신 "g" 로 사용.
 
-    - e.g) 3호 싱커를 gram으로 변환(return double)
-        Sinker.convert(3, ho)              ->       (return double)11.25
-    - e.g)  쉬운출력. 14g 을 호수로 변환(void print)
-        Sinker.printConvert(14, g)         ->       (void print)14.0g: 3.73호
+        e.g) 3호 싱커를 gram으로 변환
+            Sinker.convert(double, String)          ->      (return double)
+            Sinker.convert(3, "ho")                 ->      11.25
 
 
 bassfising.utility.ReelLineCapa
     - 스펙 외 권사량추정
     - 생성자 매개변수로 반드시 기초정보 기입해야함: new ReelLineCapa(파워, 단위, 길이)길이는 m 로 통일됨
-        e.g) ReelLineCapa myReel = new ReelLineCapa(14, lb, 75)
-    - (instance).getOtherLineCapa(새로 감을 라인 파워, 파워단위)       ->   (return double) 새 권사량
-    - (instance).printOtherLine(새로 감을 라인 파워, 파워단위)         ->   (void print) 4.0ho-16lb 78.8m
-    - (instance).printOtherLine() 로 4lb~20lb까지 모두 쉽게 프린트
+        
+        init e.g)   ReelLineCapa myReel = new ReelLineCapa(14, "lb", 90)            type: double, string, double
+        init e.g2)  ReelLineCapa newReel = new ReelLineCapa("이름" 14, "lb", 75)    type: String, double, String, double
+
+    - getOtherLineCapa: 새로 감을 라인과 파워단위를 기입하면 권사량이 리턴된다.
+        (instance).getOtherLineCapa(double, double)                         ->      (return double)
+        (instance).getOtherLineCapa(라인 파워, 파워단위:"ho" or "lb")       ->      새 권사량
+        e.g)        myReel.getOtherLineCapa(12, "lb")                       ->      105.0
 
 
+bassfising.utility.SimplePrint
+    - 출력문 확인을 위한 편의도구. 싱글톤 디자인으로, 객체를 생성하지 않는다.
+    - 모든 종속을 이곳에서 가지고 있기 때문에, ReelLineCapa와 SimplePrint 만 import 하면 모든 기능이 작동된다.
+
+    - Line 클래스나 Sinker 클래스는 즉시 사용
+        e.g) SimplePrint.printSinkerConvert(14, g);                 // 14.0g: 3.73호
+        e.g) SimplePrint.printLineConvert(12, lb);                  // 12.0lb: 3.0호
+    
+    - ReelLineCapa관련 출력을 할 땐 매개변수에 ReelLineCapa 인스턴스를 참조해야 한다.
+        e.g) SimplePrint.printOtherLine(myReel, 16, lb);            // 4.0ho-16lb 78.8m
+    
+    - 매개변수로 객체만 넘기면 4lb ~ 20lb 까지 모두 출력된다 (SimplePrint 클래스 내 printOtherLine메서드에서 시작/끝 편집 가능)
+        e.g) SimplePrint.printOtherLine(myReel);        
+            myReel:
+                1.0ho-4lb 315.0m (오차주의)
+                1.5ho-6lb 210.0m (오차주의)
+                2.0ho-8lb 157.5m (오차주의)
+                2.5ho-10lb 126.0m
+                3.0ho-12lb 105.0m
+                3.5ho-14lb 90.0m (Base)
+                4.0ho-16lb 78.8m
+                4.5ho-18lb 70.0m
+                5.0ho-20lb 63.0m (오차주의)
+        
+
+        
 TODO. example.java에도 TODO리스트 있으면. 긴급사항.
+TODO. 예외처리클래스(단위오류) 작성. 모든 클래스에서 쓰일 계획.
 TODO. json으로 사용자의 릴 정보를 관리할 데이터 관리 클래스 필요. 릴 추가, 수정, 삭제. ReelLineCapa 등과 연동될 수 있도록 함.
 TODO. ReelLineCapa 에 여분스풀 여부는 항상 false로 다루고, 만약 있다면 복사생성하여 새로 스펙을 입력받고 위 출력기능을 같이 출력.
-TODO. LineConverter 의 예외처리 구체화.
-TODO. LineUnitChecker 예외처리 클래스 구체화 및 분리(현재는 라인단위 검증)
 TODO. 단사라인 종류만 가능한 상태, 합사(PE) 추가. (합사로 인한 수식보정, 라인종류 멤버변수 추가 등 고려)
 TODO. 주석 정리
 TODO. README 개선.
 
 
+251017. SimplePrint 생성으로 인한 Sinker.java, Line.java, ReelLineCapa의 출력문 메서드 모두 삭제 (병렬관리)
+251017. SimplePrint 클래스 생성: 모든 출력 담당.
 251013. Main.java -> example.java 로 변경.
 251013. ReelLineCapa 'ho'로 사용시 일으키는 문제들 디버그. 
 251012. ReelLineCapa 의 배스용 주 사용라인(단사기준 4lb~20lb) 까지 2lb단위로 모두 출력기능 첨부

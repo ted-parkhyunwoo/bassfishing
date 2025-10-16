@@ -9,12 +9,4 @@ public class Sinker {
         else res = weight * 3.75;
         return res;
     }
-    
-    public static void printConvert(double weight, String unit) {
-        final String resUnit = unit == "g"? "ho" : "g";
-        double res = convert(weight, unit);
-        // 보기싫은 소수점 두자리까지만 반올림처리
-        final String resStr = String.format("%.2f", res);
-        System.out.println(weight + unit + ": " + resStr + (resUnit == "g"? "g":"호"));
-    }
 }
