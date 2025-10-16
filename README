@@ -7,8 +7,8 @@ bassfising.utility.converter.Line
     - 두 번째 매개변수는 현재 단위를 넣어야 함. 알아서 전환됨
 
         e.g) 4호 라인을 lb로 변환
-            LineConverter.convert(double, String)   ->      (return double)
-            LineConverter.convert(4, "ho")          ->      16.0
+            Line.convert(double, String)   ->      (return double)
+            Line.convert(4, "ho")          ->      16.0
 
 
 bassfising.utility.converter.Sinker
